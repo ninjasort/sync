@@ -141,7 +141,7 @@ Kit.prototype.loadSample = function(sampleID, url, mixToMono){
                 case 4: kit.tom2Buffer = decodedBuffer; break;
                 case 5: kit.tom3Buffer = decodedBuffer; break;
 			}
-		}, onError);
+		});
 	};
 	request.send();
 }
