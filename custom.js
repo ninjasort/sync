@@ -18,12 +18,12 @@ var maxTempo = 180;
 var noteTime;
 var lastDrawTime = -1;
 var timeoutId;
-var pitch = 1.0;
+var pitch = 1;
 var sliderVal;
 var kMaxSwing = .08;
 var currentKit;
-
-var instruments = ['kick', 'snare', 'hihat']; //'tom1', 'tom2', 'tom3'
+var rec;
+var instruments = ['kick', 'snare', 'hihat', 'tom1', 'tom2', 'tom3'];
 
 // Recorder Callback
 function bounce(blob, name){
@@ -31,27 +31,12 @@ function bounce(blob, name){
     if (confirm("Are you sure you want to download " + name + ".wav ?")){
         Recorder.forceDownload(blob, name);
     }
-
 }
 // Recorder Config
 var cfg = {
     workerPath : "Recorderjs/recorderWorker.js",
     callback : bounce
 };
-function startRecording(node, cfg){
-    var rec = new Recorder(node, cfg);
-
-    rec.record();
-}
-function stopRecording(){
-    rec.stop();
-    var name = prompt("Please give your sequence a name.", name);
-    rec.exportWAV(bounce);
-}
-
-window.onError = function(error){
-	console.log(error)
-}
 
 var beatReset = {
 	"kitIndex":0,
@@ -122,12 +107,12 @@ Kit.prototype.load = function(){
 		return;
 	this.startedLoading = true;
 
-	var kick = "samples/M-808K1.wav";
-	var snare = "samples/M-808Sn1.wav";
-	var hihat = "samples/M-808OH1.wav";
-    var tom1 = "samples/M-808OH1.wav";
-    var tom2 = "samples/M-808OH1.wav";
-    var tom3 = "samples/M-808OH1.wav";
+	var kick = "samples/909bd4.wav";
+	var snare = "samples/909clap2.wav";
+	var hihat = "samples/909ophat1.wav";
+    var tom1 = "samples/TOM04L.wav";
+    var tom2 = "samples/TOM04M.wav";
+    var tom3 = "samples/TOM05H.wav";
 
 	this.loadSample(0, kick, false);
 	this.loadSample(1, snare, false);
@@ -135,6 +120,7 @@ Kit.prototype.load = function(){
     this.loadSample(3, tom1, false);
     this.loadSample(4, tom2, false);
     this.loadSample(5, tom3, false);
+
 }
 
 Kit.prototype.loadSample = function(sampleID, url, mixToMono){
@@ -159,6 +145,7 @@ Kit.prototype.loadSample = function(sampleID, url, mixToMono){
 	};
 	request.send();
 }
+
 function loadAssets(){
 
 	var kit = new Kit();
@@ -168,6 +155,7 @@ function loadAssets(){
 	currentKit = kit;
 
 }
+
 function playSound(buffer, noteTime){
 
 		// voice node
@@ -182,137 +170,17 @@ function playSound(buffer, noteTime){
 		
 		// connect
 		voice.connect(gain);
+        gain.connect(context.destination);
 
-		gain.connect(context.destination);
-        gain.connect()
         
-		voice.start(noteTime);
+        // rec = new Recorder(buffer.inputBuffer, cfg);
+        // rec.record();
+
+		
+        voice.start(noteTime);
         
 }
 
-function handlePlay(){
-    noteTime = 0;
-	startTime = context.currentTime + 0.005;
-    schedule();
-    
-    var stopButton = document.getElementById('play');
-    stopButton.removeEventListener('click', handlePlay, false);
-    stopButton.textContent = 'Stop';
-    stopButton.id = 'stop';
-    stopButton.classList.remove('success');
-    stopButton.classList.add('alert');
-    stopButton.classList.add('playing');
-
-    stopButton.addEventListener('click', handleStop, false);
-    stopButton.addEventListener('dblclick', resetBeat, true);
-}
-function handleStop(){
-	clearTimeout(timeoutId);
-
-    rhythmIndex = 0;
-
-    var playButton = document.getElementById('stop');
-    playButton.removeEventListener('click', handleStop, false);
-    playButton.id = 'play';
-    playButton.classList.remove('alert');
-    playButton.textContent = 'Play';
-    playButton.classList.add('success');
-    playButton.classList.remove('playing');
-
-    playButton.addEventListener('click', handlePlay, false);
-}
-function init(){
-
-	context = new webkitAudioContext();
-
-	loadAssets();
-	
-	initControls();
-	initButtons();
-
-}
-
-function initControls(){
-
-    document.getElementById('play').addEventListener('click', handlePlay, false);
-
-}
-
-function initButtons() {        
-    var elButton;
-    var kNumInstruments = instruments.length;
-
-    for (i = 0; i < loopLength; ++i) {
-        for (j = 0; j < kNumInstruments; j++) {
-                elButton = document.getElementById(instruments[j] + '_' + i);
-            	elButton.addEventListener("mousedown", handleButtonMouseDown, true);
-        }
-    }
-}
-function handleButtonMouseDown(event) {
-    var notes = theBeat.rhythm1;
-    
-    var instrumentIndex;
-    var rhythmIndex;
-
-    var elId = event.target.id;
-    rhythmIndex = elId.substr(elId.indexOf('_') + 1, 2);
-    instrumentIndex = instruments.indexOf(elId.substr(0, elId.indexOf('_')));
-        
-    switch (instrumentIndex) {
-        case 0: notes = theBeat.rhythm1; break;
-        case 1: notes = theBeat.rhythm2; break;
-        case 2: notes = theBeat.rhythm3; break;
-        case 3: notes = theBeat.rhythm4; break;
-        case 4: notes = theBeat.rhythm5; break;
-        case 5: notes = theBeat.rhythm6; break;
-    }
-
-    notes[rhythmIndex] = (notes[rhythmIndex] + 1) % 2;
-    console.log(notes[rhythmIndex]);
-
-    drawNote(notes[rhythmIndex], rhythmIndex, instrumentIndex);
-
-    var note = notes[rhythmIndex];
-    
-    if (note) {
-        switch(instrumentIndex) {
-        case 0:  // Kick
-            playSound(currentKit.kickBuffer);
-            break;
-
-        case 1:  // Snare
-            playSound(currentKit.snareBuffer);
-            break;
-
-        case 2:  // Hihat
-            // Pan the hihat according to sequence position.
-            playSound(currentKit.hihatBuffer);
-            break;
-
-        case 3:  // Tom 1 
-            playSound(currentKit.tom1Buffer);
-            break;
-
-        case 4:  // Tom 2   
-            playSound(currentKit.hihatBuffer);
-            break;
-
-        case 5:  // Tom 3   
-            playSound(currentKit.hihatBuffer);
-            break;
-        }
-    }
-}
-function drawNote(drawValue, xindex, yindex) {    
-    var elButton = document.getElementById(instruments[yindex] + '_' + xindex);
-
-    switch (drawValue) {
-        case 0: elButton.classList.remove('alert'); break;
-        case 1: elButton.classList.add('alert'); break;
-        // case 2: elButton.src = 'images/button_on.png'; break;
-    }
-}
 function schedule() {
     var currentTime = context.currentTime;
 
@@ -364,6 +232,145 @@ function schedule() {
     timeoutId = setTimeout(schedule, 0);
 }
 
+function handlePlay(){
+    noteTime = 0;
+	startTime = context.currentTime + 0.005;
+
+    schedule();
+    
+    // remove play button and create stop button
+    var stopButton = document.getElementById('play');
+    stopButton.removeEventListener('click', handlePlay, false);
+    stopButton.textContent = 'Stop';
+    stopButton.id = 'stop';
+    stopButton.classList.remove('success');
+    stopButton.classList.add('alert');
+    stopButton.classList.add('playing');
+
+    stopButton.addEventListener('click', handleStop, false);
+    stopButton.addEventListener('dblclick', resetBeat, true);
+}
+
+function handleStop(){
+	clearTimeout(timeoutId);
+    // stopRecording(rec);
+       // rec.stop();
+    // var name = prompt("Please give your sequence a name.", name);
+    // rec.exportWAV(bounce);
+    // rec.clear();
+    rhythmIndex = 0;
+
+    if(document.getElementById('stop')){
+
+        var playButton = document.getElementById('stop');
+        playButton.removeEventListener('click', handleStop, false);
+        playButton.id = 'play';
+        playButton.classList.remove('alert');
+        playButton.textContent = 'Play';
+        playButton.classList.add('success');
+        playButton.classList.remove('playing');
+
+        playButton.addEventListener('click', handlePlay, false);
+    }
+    drawPlayhead(rhythmIndex);
+}
+
+function init(){
+
+	context = new webkitAudioContext();
+
+	loadAssets();
+	
+	initControls();
+	initButtons();
+
+}
+
+function initControls(){
+
+    document.getElementById('play').addEventListener('click', handlePlay, false);
+    document.getElementById('clear').addEventListener('click', resetBeat, false);
+
+}
+
+function initButtons() {        
+    var elButton;
+    var kNumInstruments = instruments.length;
+
+    for (i = 0; i < loopLength; ++i) {
+        for (j = 0; j < kNumInstruments; j++) {
+                elButton = document.getElementById(instruments[j] + '_' + i);
+            	elButton.addEventListener("mousedown", handleButtonMouseDown, true);
+        }
+    }
+}
+
+function handleButtonMouseDown(event) {
+    var notes = theBeat.rhythm1;
+    
+    var instrumentIndex;
+    var rhythmIndex;
+
+    var elId = event.target.id;
+    rhythmIndex = elId.substr(elId.indexOf('_') + 1, 2);
+    instrumentIndex = instruments.indexOf(elId.substr(0, elId.indexOf('_')));
+        
+    switch (instrumentIndex) {
+        case 0: notes = theBeat.rhythm1; break;
+        case 1: notes = theBeat.rhythm2; break;
+        case 2: notes = theBeat.rhythm3; break;
+        case 3: notes = theBeat.rhythm4; break;
+        case 4: notes = theBeat.rhythm5; break;
+        case 5: notes = theBeat.rhythm6; break;
+    }
+
+    notes[rhythmIndex] = (notes[rhythmIndex] + 1) % 2;
+    console.log(notes[rhythmIndex]);
+
+    drawNote(notes[rhythmIndex], rhythmIndex, instrumentIndex);
+
+    var note = notes[rhythmIndex];
+    
+    if (note) {
+        switch(instrumentIndex) {
+        case 0:  // Kick
+            playSound(currentKit.kickBuffer);
+            break;
+
+        case 1:  // Snare
+            playSound(currentKit.snareBuffer);
+            break;
+
+        case 2:  // Hihat
+            // Pan the hihat according to sequence position.
+            playSound(currentKit.hihatBuffer);
+            break;
+
+        case 3:  // Tom 1 
+            playSound(currentKit.tom1Buffer);
+            break;
+
+        case 4:  // Tom 2   
+            playSound(currentKit.tom2Buffer);
+            break;
+
+        case 5:  // Tom 3   
+            playSound(currentKit.tom3Buffer);
+            break;
+        }
+    }
+}
+
+function drawNote(drawValue, xindex, yindex) {    
+    var elButton = document.getElementById(instruments[yindex] + '_' + xindex);
+
+    switch (drawValue) {
+        case 0: elButton.classList.remove('alert'); break;
+        case 1: elButton.classList.add('alert'); break;
+        // case 2: elButton.src = 'images/button_on.png'; break;
+    }
+}
+
 function advanceNote() {
     // Advance time by a 16th note...
     var secondsPerBeat = 60.0 / theBeat.tempo;
@@ -392,22 +399,48 @@ function resetBeat(){
 	// 	span.classList.remove("alert");
 
 	// }
+    handleStop();
+    loadBeat(beatReset);
 
 	// drawPlayhead(0);
 }
 function drawPlayhead(xindex) {
+    // create a percentage of the current xindex
     var percentage = (xindex * 100) / 15;
 
+    // set the meter width to that percentage
     var meter = document.getElementById('transport-meter');
     meter.firstChild.style.width = percentage + '%';
-    // var elNew = document.getElementById('kick_' + xindex);
-    // var elOld = document.getElementById('kick_' + lastIndex);
-    
 
-    // elNew.classList.add('alert');
-    // elNew.innerHTML = "Kick";
-    // elOld.classList.remove('alert');
-    // elOld.innerHTML = "____";
+}
+function loadBeat(beat) {
+    // Check that assets are loaded.
+    if (beat != beatReset && !beat.isLoaded())
+        return false;
+
+    handleStop();
+
+    theBeat = cloneBeat(beat);
+    // currentKit = kits[theBeat.kitIndex];
+
+    updateControls();
+    return true;
+}
+function updateControls() {
+    for (i = 0; i < loopLength; ++i) {
+        for (j = 0; j < instruments.length; j++) {
+            switch (j) {
+                case 0: notes = theBeat.rhythm1; break;
+                case 1: notes = theBeat.rhythm2; break;
+                case 2: notes = theBeat.rhythm3; break;
+                case 3: notes = theBeat.rhythm4; break;
+                case 4: notes = theBeat.rhythm5; break;
+                case 5: notes = theBeat.rhythm6; break;
+            }
+
+            drawNote(notes[i], i, j);
+        }
+    }
 }
 
 /**
