@@ -14,6 +14,7 @@
 
 	<!-- Included CSS Files -->
 	<link rel="stylesheet" href="stylesheets/app.css">
+	<link rel="shortcut icon" href="favicon.ico" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 	<script src="jQuery-Kontrol/js/jquery.kontrol.js"></script>
 	<script src="http://connect.soundcloud.com/sdk.js"></script>
@@ -22,11 +23,56 @@
 	<link rel="stylesheet" href="style.css">
 	<script src="javascripts/foundation/modernizr.foundation.js"></script>
 </head>
+<script>
+	jQuery(document).ready(function($){
+		$(".pitch").dial({
+                fgColor:"#222222",
+                bgColor:"#EEEEEE",
+                min: 0,
+                max: 10,
+                thickness : .5, 
+                change : function (value) {
+                    // console.log("change : ", value);
+                    dial = value;
+                    pitch = value;
+                }
+            }).css({
+            	display:'inline',padding:'0px 10px'
+        });
+		$(".tempo").dial({
+                fgColor:"#222222",
+                bgColor:"#EEEEEE",
+                min: 70,
+                max: 129,
+                thickness : .5, 
+                change : function (value) {
+                    dial = value;
+                    theBeat.tempo = (value + 129.0) % 130.0;
+                }
+            }).css({
+            	display:'inline',padding:'0px 10px'
+        });
+        $(".swing").dial({
+                fgColor:"#222222",
+                bgColor:"#EEEEEE",
+                min: 0,
+                max: 20,
+                thickness : .5, 
+                change : function (value) {
+                    dial = value;
+                    theBeat.swingFactor = (value / 10) % 20;
+                    console.log(theBeat.swingFactor);
+                }
+            }).css({
+            	display:'inline',padding:'0px 10px'
+        });
+	});
+	</script>
 <body>
 	<div class="row">
 		<div class="twelve columns">
 			<h2>WebKit - 808</h2>
-			<p>Coming Soon...</p>
+			<p>Version 1.0 | Developed by Cameron J Roe</p>
 			<hr />
 		</div>
 	</div>
@@ -34,10 +80,155 @@
 	<div class="row">
 
 		<div class="four columns" style="text-align: justify;">
+			<h4>Getting Started</h4>
+			<p>Welcome to WebKit - 808, a fully functional, HTML 5, web drum machine modeled after the classic Roland TR-808. It takes advantage of the wonderful <a href="https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html">Web Audio API"</a> and uses <a href="http://anthonyterrien.com/kontrol/">jQuery Kontrol</a> for epic dials!</p>
+
+			<p>Create your own sequenced beats by clicking on the blue boxes. When you're finished your funky sequence, don't forget to download it as WAV file and use it in your productions. <br/> Have fun!</p>
+
+			<p><a href="#" class="button">Make some beats... >></a></p>
 		</div>
+
+		<div class="eight columns">
+
+			<!-- Grid Example -->
+			<div class="row">
+				<div class="twelve columns">
+					<div id="panel" class="panel">
+						<p>
+							<span id="tom3_0" class="label">____</span>
+							<span id="tom3_1" class="label">____</span>
+							<span id="tom3_2" class="label">____</span>
+							<span id="tom3_3" class="label">____</span>
+							<span id="tom3_4" class="label">____</span>
+							<span id="tom3_5" class="label">____</span>
+							<span id="tom3_6" class="label">____</span>
+							<span id="tom3_7" class="label">____</span>
+							<span id="tom3_8" class="label">____</span>
+							<span id="tom3_9" class="label">____</span>
+							<span id="tom3_10" class="label">____</span>
+							<span id="tom3_11" class="label">____</span>
+							<span id="tom3_12" class="label">____</span>
+							<span id="tom3_13" class="label">____</span>
+							<span id="tom3_14" class="label">____</span>
+							<span id="tom3_15" class="label">____</span>
+							<!-- Put the sequencer here -->
+						</p>
+						<p>
+							<span id="tom2_0" class="label">____</span>
+							<span id="tom2_1" class="label">____</span>
+							<span id="tom2_2" class="label">____</span>
+							<span id="tom2_3" class="label">____</span>
+							<span id="tom2_4" class="label">____</span>
+							<span id="tom2_5" class="label">____</span>
+							<span id="tom2_6" class="label">____</span>
+							<span id="tom2_7" class="label">____</span>
+							<span id="tom2_8" class="label">____</span>
+							<span id="tom2_9" class="label">____</span>
+							<span id="tom2_10" class="label">____</span>
+							<span id="tom2_11" class="label">____</span>
+							<span id="tom2_12" class="label">____</span>
+							<span id="tom2_13" class="label">____</span>
+							<span id="tom2_14" class="label">____</span>
+							<span id="tom2_15" class="label">____</span>
+							<!-- Put the sequencer here -->
+						</p>
+						<p>
+							<span id="tom1_0" class="label">____</span>
+							<span id="tom1_1" class="label">____</span>
+							<span id="tom1_2" class="label">____</span>
+							<span id="tom1_3" class="label">____</span>
+							<span id="tom1_4" class="label">____</span>
+							<span id="tom1_5" class="label">____</span>
+							<span id="tom1_6" class="label">____</span>
+							<span id="tom1_7" class="label">____</span>
+							<span id="tom1_8" class="label">____</span>
+							<span id="tom1_9" class="label">____</span>
+							<span id="tom1_10" class="label">____</span>
+							<span id="tom1_11" class="label">____</span>
+							<span id="tom1_12" class="label">____</span>
+							<span id="tom1_13" class="label">____</span>
+							<span id="tom1_14" class="label">____</span>
+							<span id="tom1_15" class="label">____</span>
+							<!-- Put the sequencer here -->
+						</p>
+						<p>
+							<span id="hihat_0" class="label">____</span>
+							<span id="hihat_1" class="label">____</span>
+							<span id="hihat_2" class="label">____</span>
+							<span id="hihat_3" class="label">____</span>
+							<span id="hihat_4" class="label">____</span>
+							<span id="hihat_5" class="label">____</span>
+							<span id="hihat_6" class="label">____</span>
+							<span id="hihat_7" class="label">____</span>
+							<span id="hihat_8" class="label">____</span>
+							<span id="hihat_9" class="label">____</span>
+							<span id="hihat_10" class="label">____</span>
+							<span id="hihat_11" class="label">____</span>
+							<span id="hihat_12" class="label">____</span>
+							<span id="hihat_13" class="label">____</span>
+							<span id="hihat_14" class="label">____</span>
+							<span id="hihat_15" class="label">____</span>
+							<!-- Put the sequencer here -->
+						</p>
+						<p>
+							<span id="snare_0" class="label">____</span>
+							<span id="snare_1" class="label">____</span>
+							<span id="snare_2" class="label">____</span>
+							<span id="snare_3" class="label">____</span>
+							<span id="snare_4" class="label">____</span>
+							<span id="snare_5" class="label">____</span>
+							<span id="snare_6" class="label">____</span>
+							<span id="snare_7" class="label">____</span>
+							<span id="snare_8" class="label">____</span>
+							<span id="snare_9" class="label">____</span>
+							<span id="snare_10" class="label">____</span>
+							<span id="snare_11" class="label">____</span>
+							<span id="snare_12" class="label">____</span>
+							<span id="snare_13" class="label">____</span>
+							<span id="snare_14" class="label">____</span>
+							<span id="snare_15" class="label">____</span>
+							<!-- Put the sequencer here -->
+						</p>
+						<p id="bottomRow">
+							<span id="kick_0" class="label">____</span>
+							<span id="kick_1" class="label">____</span>
+							<span id="kick_2" class="label">____</span>
+							<span id="kick_3" class="label">____</span>
+							<span id="kick_4" class="label">____</span>
+							<span id="kick_5" class="label">____</span>
+							<span id="kick_6" class="label">____</span>
+							<span id="kick_7" class="label">____</span>
+							<span id="kick_8" class="label">____</span>
+							<span id="kick_9" class="label">____</span>
+							<span id="kick_10" class="label">____</span>
+							<span id="kick_11" class="label">____</span>
+							<span id="kick_12" class="label">____</span>
+							<span id="kick_13" class="label">____</span>
+							<span id="kick_14" class="label">____</span>
+							<span id="kick_15" class="label">____</span>
+							<p>
+								<span class="beatNum">1</span>
+								<span class="beatNum">5</span>
+								<span class="beatNum">9</span>
+								<span class="beatNum">13</span>
+							</p>
+							<!-- Put the sequencer here -->
+						</p>
+						<div id="transport-meter" class="nice progress"><span style="width:0%" class="meter"></span></div>
+						<input class="pitch dial" data-width="100" data-height="100" value="0">
+						<span>Pitch</span>
+						<input class="tempo dial" data-width="100" data-height="100">
+						<span>Tempo</span>
+						<input class="swing dial" data-width="100" data-height="100">
+						<span>Swing</span>
+					
+					</div>
+				</div>
+			</div>
 
       <div class="row">
         <div class="six columns">
+          <p id="controls"><a href="#" id="play" class="success button">Start</a> <a href="#" id="clear" class="button">Clear</a></p>
         </div>
       </div>
 		</div>
