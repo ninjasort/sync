@@ -114,16 +114,12 @@ Kit.prototype.load = function(){
     var tom2 = "samples/TOM04M.wav";
     var tom3 = "samples/TOM05H.wav";
 
-    function delayLoad(){
-
-    	this.loadSample(0, kick, false);
-    	this.loadSample(1, snare, false);
-    	this.loadSample(2, hihat, false);
-        this.loadSample(3, tom1, false);
-        this.loadSample(4, tom2, false);
-        this.loadSample(5, tom3, false);
-    }
-    setTimeout(delayLoad, 2000);
+	this.loadSample(0, kick, false);
+	this.loadSample(1, snare, false);
+	this.loadSample(2, hihat, false);
+    this.loadSample(3, tom1, false);
+    this.loadSample(4, tom2, false);
+    this.loadSample(5, tom3, false);
 
 }
 
