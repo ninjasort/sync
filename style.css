@@ -33,3 +33,12 @@ p:hover{
 .label:hover{
     cursor: pointer;
 }
+#bottomRow{
+    margin-bottom: 1px;
+}
+.beatNum{
+    padding-right: 133px;
+}
+#panel p{
+    padding-left: 10px;
+}
