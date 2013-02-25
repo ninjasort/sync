@@ -49,8 +49,8 @@ function stopRecording(){
     rec.exportWAV(bounce);
 }
 
-window.onError = function(){
-	alert("foo");
+window.onError = function(error){
+	console.log(error)
 }
 
 var beatReset = {
