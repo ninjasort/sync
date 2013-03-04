@@ -227,7 +227,7 @@ Kit.prototype.load = function(kitPreset){
     }else{
         var kick = "samples/909bd4.wav";
         var snare = "samples/909clap2.wav";
-        var hihat = "samples/909ophat1.wav";
+        var hihat = "samples/909ophat1.WAV";
         var tom1 = "samples/TOM04L.wav";
         var tom2 = "samples/TOM04M.wav";
         var tom3 = "samples/TOM05H.wav";
