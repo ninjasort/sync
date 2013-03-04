@@ -180,6 +180,9 @@ function dubstepDemo(){
     var kit = new Kit();
     kit.load('dubstep');
     currentKit = kit;
+    $('.pitch').val(0).trigger('change');
+    $('.tempo').val(70).trigger('change');
+    $('.swing').val(0).trigger('change');
     console.log("dubbb");
 }
 
