@@ -113,3 +113,8 @@ p:hover{
 .muted{
     background-color: rgb(146, 137, 137);
 }
+#social-icons{
+    position: absolute;
+    left: 245px;
+    top: -2px;
+}
