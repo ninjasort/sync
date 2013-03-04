@@ -214,8 +214,8 @@ Kit.prototype.load = function(kitPreset){
         var kick = "samples/dubstepKick.wav";
         var snare = "samples/dubstepClap.wav";
         var hihat = "samples/dubstepHH.wav";
-        var tom1 = "samples/dubstepReverse.wav";
-        var tom2 = "samples/dubstepTom1.wav";
+        var tom1 = "samples/dubstepTom.wav";
+        var tom2 = "samples/dubstepReverse.wav";
         var tom3 = "samples/dubstepTom2.wav";   
     }else if(kitPreset === 'hiphop'){
         var kick = "samples/hiphopKick.wav";
