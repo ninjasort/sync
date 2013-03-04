@@ -214,7 +214,7 @@ Kit.prototype.load = function(kitPreset){
         var kick = "samples/dubstepKick.wav";
         var snare = "samples/dubstepClap.wav";
         var hihat = "samples/dubstepHH.wav";
-        var tom1 = "samples/dubstepTom.wav";
+        var tom1 = "samples/dubstepReverse.wav";
         var tom2 = "samples/dubstepTom1.wav";
         var tom3 = "samples/dubstepTom2.wav";   
     }else if(kitPreset === 'hiphop'){
@@ -228,9 +228,9 @@ Kit.prototype.load = function(kitPreset){
         var kick = "samples/909bd4.wav";
         var snare = "samples/909clap2.wav";
         var hihat = "samples/909ophat1.WAV";
-        var tom1 = "samples/TOM04L.wav";
-        var tom2 = "samples/TOM04M.wav";
-        var tom3 = "samples/TOM05H.wav";
+        var tom1 = "samples/TOM04L.WAV";
+        var tom2 = "samples/TOM04M.WAV";
+        var tom3 = "samples/TOM05H.WAV";
     }
 
 	this.loadSample(0, kick, false);
