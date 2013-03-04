@@ -25,19 +25,6 @@ var currentKit;
 var rec;
 var instruments = ['kick', 'snare', 'hihat', 'tom1', 'tom2', 'tom3'];
 
-// Recorder Callback
-function bounce(blob, name){
-    name = name || "output";
-    if (confirm("Are you sure you want to download " + name + ".wav ?")){
-        Recorder.forceDownload(blob, name);
-    }
-}
-// Recorder Config
-var cfg = {
-    workerPath : "Recorderjs/recorderWorker.js",
-    callback : bounce
-};
-
 var beatReset = {
 	"kitIndex":0,
 	"effectIndex":0,
@@ -182,6 +169,9 @@ function hiphopDemo(){
     var kit = new Kit();
     kit.load('hiphop');
     currentKit = kit;
+    $('.pitch').val(1).trigger('change');
+    $('.tempo').val(83).trigger('change');
+    $('.swing').val(5).trigger('change');
     console.log("hiphop");
 }
 
@@ -300,12 +290,7 @@ function playSound(buffer, noteTime){
 		voice.connect(gain);
         gain.connect(context.destination);
 
-        
-        // rec = new Recorder(buffer.inputBuffer, cfg);
-        // rec.record();
-
         voice.start(noteTime);
-        
 }
 
 function schedule() {
@@ -382,11 +367,7 @@ function handlePlay(){
 function handleStop(){
     currentKit.isPlaying = false;
 	clearTimeout(timeoutId);
-    // stopRecording(rec);
-       // rec.stop();
-    // var name = prompt("Please give your sequence a name.", name);
-    // rec.exportWAV(bounce);
-    // rec.clear();
+
     rhythmIndex = 0;
 
     if(document.getElementById('stop')){
