@@ -290,7 +290,7 @@ function playSound(buffer, noteTime){
 		voice.connect(gain);
         gain.connect(context.destination);
 
-        voice.start(noteTime);
+        voice.noteOn(noteTime);
 }
 
 function schedule() {
