@@ -15,7 +15,7 @@
 	<!-- Included CSS Files -->
 	<link rel="stylesheet" href="stylesheets/app.css">
 	<link rel="shortcut icon" href="favicon.ico" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="jquery.kontrol.js"></script>
 	<!-- <script src="http://connect.soundcloud.com/sdk.js"></script> -->
 	<script type="text/javascript" src="recorder.js"></script>
@@ -25,6 +25,9 @@
 </head>
 <script>
 	jQuery(document).ready(function($){
+		$("#buttonForModal").click(function() {
+	      $("#myModal").reveal();
+	    });
 		$(".pitch").dial({
                 fgColor:"#222222",
                 bgColor:"#EEEEEE",
@@ -69,6 +72,12 @@
 	});
 	</script>
 <body>
+	<div id="myModal" class="reveal-modal [expand, xlarge, large, medium, small]">
+	  <h2>Keyboard Shortcuts</h2>
+	  <p><strong>space</strong> : play/stop</p>
+	  <p><strong>c</strong> : clear</p>
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
 	<div class="row">
 		<div class="twelve columns">
 			<h2>WebKit - 808</h2>
@@ -81,11 +90,23 @@
 
 		<div class="four columns" style="text-align: justify;">
 			<h4>Getting Started</h4>
-			<p>Welcome to WebKit - 808, a fully functional, HTML 5, web drum machine modeled after the classic Roland TR-808. It takes advantage of the wonderful <a href="https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html">Web Audio API"</a> and uses <a href="http://anthonyterrien.com/kontrol/">jQuery Kontrol</a> for epic dials!</p>
+			<p>Welcome to WebKit - 808, a fully functional, HTML 5, web drum machine. It takes advantage of the wonderful <a href="https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html">Web Audio API"</a> and uses <a href="http://anthonyterrien.com/kontrol/">jQuery Kontrol</a> for epic dials!</p>
 
-			<p>Create your own sequenced beats by clicking on the blue boxes. When you're finished your funky sequence, don't forget to download it as WAV file and use it in your productions. <br/> Have fun!</p>
+<!-- 			<p>Create your own sequenced beats by clicking on the blue boxes. When you're finished your funky sequence, don't forget to download it as WAV file and use it in your productions. <br/> Have fun!</p> -->
+			<form class="custom">
 
-			<p><a href="#" class="button">Make some beats... >></a></p>
+			  <!-- Custom Selects -->
+			  <label for="customDropdown"><strong>Presets</strong></label>
+			  <div class="custom dropdown">
+			    <a href="#" class="current">Choose a preset...</a>
+			    <a href="#" class="selector"></a>
+				    <ul>
+				      <li id="funky_house">Funky House</li>
+				      <li id="hiphop">Hip Hop</li>
+				      <li id="dubstep">Dubstep</li>
+				    </ul>
+			  </div>
+			</form>
 		</div>
 
 		<div class="eight columns">
@@ -94,6 +115,14 @@
 			<div class="row">
 				<div class="twelve columns">
 					<div id="panel" class="panel">
+						<div id="mutes">
+							<span id="tom3_mute" class="mute-button"><a href="#">M</a></span>
+							<span id="tom2_mute" class="mute-button"><a href="#">M</a></span>
+							<span id="tom1_mute" class="mute-button"><a href="#">M</a></span>
+							<span id="hihat_mute" class="mute-button"><a href="#">M</a></span>
+							<span id="snare_mute" class="mute-button"><a href="#">M</a></span>
+							<span id="kick_mute" class="mute-button"><a href="#">M</a></span>
+						</div>
 						<p>
 							<span id="tom3_0" class="label">____</span>
 							<span id="tom3_1" class="label">____</span>
@@ -206,6 +235,14 @@
 							<span id="kick_13" class="label">____</span>
 							<span id="kick_14" class="label">____</span>
 							<span id="kick_15" class="label">____</span>
+							<div id="clears">
+								<span id="tom3_clear" class="clear-button"><a href="#">&#120;</a></span>
+								<span id="tom2_clear" class="clear-button"><a href="#">&#120;</a></span>
+								<span id="tom1_clear" class="clear-button"><a href="#">&#120;</a></span>
+								<span id="hihat_clear" class="clear-button"><a href="#">&#120;</a></span>
+								<span id="snare_clear" class="clear-button"><a href="#">&#120;</a></span>
+								<span id="kick_clear" class="clear-button"><a href="#">&#120;</a></span>
+							</div>
 							<p>
 								<span class="beatNum">1</span>
 								<span class="beatNum">5</span>
@@ -227,13 +264,15 @@
 			</div>
 
       <div class="row">
-        <div class="six columns">
-          <p id="controls"><a href="#" id="play" class="success button">Start</a> <a href="#" id="clear" class="button">Clear</a></p>
+        <div class="twelve columns">
+          <p id="controls"><a href="#" id="play" class="success button">Start</a> <a href="#" id="clear" class="button">Clear</a><a style="float: right" href="#" class="small button" data-reveal-id="myModal">Keyboard Shortcuts</a></p>
         </div>
       </div>
 		</div>
 	</div>
 
+	<footer style="text-align:center; margin: 100px 0px 20px 0px; font-size: 13px;">&copy; 2013 | Built with <a href="http://foundation.zurb.com/">Foundation</a></footer>
+	
 	<!-- Included JS Files (Uncompressed) -->
 	<script src="javascripts/foundation/jquery.js"></script>
 	

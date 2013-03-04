@@ -30,6 +30,9 @@ p:hover{
     cursor: default;
     opacity: 1;
 }
+.label{
+    border-radius: 5px;
+}
 .label:hover{
     cursor: pointer;
 }
@@ -39,6 +42,74 @@ p:hover{
 .beatNum{
     padding-right: 133px;
 }
+#panel{
+    position: relative;
+}
 #panel p{
     padding-left: 10px;
+}
+#mutes{
+    position: absolute;
+    left: 9px;
+    top: 25px;
+}
+#mutes a{
+    color: #fff;
+}
+.mute-button {
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    line-height: 1;
+    white-space: nowrap;
+    display: block;
+    position: relative;
+    bottom: 1px;
+    color: #fff;
+    background: rgba(146, 146, 146, 0.4);
+    margin-bottom: 25px;
+    padding: 2px;
+}
+.mute-button:hover, .active{
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    line-height: 1;
+    white-space: nowrap;
+    display: block;
+    position: relative;
+    bottom: 1px;
+    color: #fff;
+    background: rgba(146, 146, 146, 1.0);
+    margin-bottom: 25px;
+    padding: 2px;   
+}
+#clears{
+    position: absolute;
+    right: 9px;
+    top: 25px;
+}
+#clears a{
+    color: #444;
+}
+.clear-button {
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    line-height: 1;
+    white-space: nowrap;
+    display: block;
+    position: relative;
+    bottom: 1px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.4);
+    margin-bottom: 26px;
+    padding: 0px 2px 3px;
+    border-radius: 35px;
+}
+.muted{
+    background-color: rgb(146, 137, 137);
 }
