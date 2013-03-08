@@ -121,9 +121,19 @@ p:hover{
     left: 245px;
     top: -2px;
 }
-
+#mobile-support{
+    display: none;
+}
 @media only screen and (max-width: 767px){
     .button{
         margin-bottom: 10px;
+    }
+}
+@media only screen and (max-width: 649px){
+    .four, .eight, #controls{
+        display: none;
+    }
+    #mobile-support{
+        display: block;
     }
 }
