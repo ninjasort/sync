@@ -26,6 +26,9 @@ p:hover {
     margin: 0 auto;
     margin-top: 200px;
 }
+.dropdown ul{
+    width: 100% !important;
+}
 p:hover{
     cursor: default;
     opacity: 1;
@@ -117,4 +120,10 @@ p:hover{
     position: absolute;
     left: 245px;
     top: -2px;
+}
+
+@media only screen and (max-width: 767px){
+    .button{
+        margin-bottom: 10px;
+    }
 }

@@ -6,11 +6,16 @@
  * =====================================================================
  */
 
-/* Variables */
+
+/* FireBase */
+
+
+
+/* Start on page load */
 window.onload = init;
 
+/* Globals */
 var context;
-
 var loopLength = 16;
 var rhythmIndex = 0;
 var minTempo = 50;
@@ -105,6 +110,26 @@ var dubstep = {
     "rhythm6":[0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 };
 
+var demo808 = {
+    "kitIndex":0,
+    "effectIndex":0,
+    "tempo":114,
+    "swingFactor":0,
+    "effectMix":0.25,
+    "kickPitchVal":0.5,
+    "snarePitchVal":0.5,
+    "hihatPitchVal":0.5,
+    "tom1PitchVal":0.5,
+    "tom2PitchVal":0.5,
+    "tom3PitchVal":0.5,
+    "rhythm1":[1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+    "rhythm2":[0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+    "rhythm3":[0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0],
+    "rhythm4":[0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    "rhythm5":[0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    "rhythm6":[0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0]
+};
+
 function cloneBeat(source) {
     var beat = new Object();
     
@@ -129,7 +154,6 @@ function cloneBeat(source) {
 }
 
 function clearBeat(ins){
-
 
     if(ins === 0){
         theBeat.rhythm1 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
@@ -156,7 +180,7 @@ var theBeat = cloneBeat(beatReset);
 function funkyDemo(){
     loadBeat(funkyHouse);
     var kit = new Kit();
-    kit.load();
+    kit.load('funky_house');
     currentKit = kit;
     $('.pitch').val(1).trigger('change');
     $('.tempo').val(126).trigger('change');
@@ -184,6 +208,16 @@ function dubstepDemo(){
     $('.tempo').val(70).trigger('change');
     $('.swing').val(0).trigger('change');
     console.log("dubbb");
+}
+
+function call808(){
+    loadBeat(demo808);
+    var kit = new Kit();
+    kit.load();
+    currentKit = kit;
+    $('.pitch').val(0).trigger('change');
+    $('.tempo').val(114).trigger('change');
+    $('.swing').val(4).trigger('change');
 }
 
 function Kit(){
@@ -227,13 +261,20 @@ Kit.prototype.load = function(kitPreset){
         var tom1 = "samples/hiphopTom.wav";
         var tom2 = "samples/hiphopTom1.wav";
         var tom3 = "samples/hiphopTom2.wav";
-    }else{
+    }else if(kitPreset === 'funky_house'){
         var kick = "samples/909bd4.wav";
         var snare = "samples/909clap2.wav";
         var hihat = "samples/909ophat1.WAV";
         var tom1 = "samples/TOM04L.WAV";
         var tom2 = "samples/TOM04M.WAV";
         var tom3 = "samples/TOM05H.WAV";
+    }else{
+        var kick = "samples/808kick.WAV";
+        var snare = "samples/808clap.WAV";
+        var hihat = "samples/808hihat.WAV";
+        var tom1 = "samples/808tom1.WAV";
+        var tom2 = "samples/808tom2.WAV";
+        var tom3 = "samples/808tom3.WAV";        
     }
 
 	this.loadSample(0, kick, false);
@@ -484,6 +525,7 @@ function initControls(){
     document.getElementById('funky_house').addEventListener('click', funkyDemo, false);
     document.getElementById('hiphop').addEventListener('click', hiphopDemo, false);
     document.getElementById('dubstep').addEventListener('click', dubstepDemo, false);
+    document.getElementById('demo808').addEventListener('click', call808, false);
 }
 
 function initButtons() {        
@@ -516,7 +558,7 @@ function handleButtonMouseDown(event) {
     var elId = event.target.id;
     rhythmIndex = elId.substr(elId.indexOf('_') + 1, 2);
     instrumentIndex = instruments.indexOf(elId.substr(0, elId.indexOf('_')));
-        
+    
     switch (instrumentIndex) {
         case 0: notes = theBeat.rhythm1; break;
         case 1: notes = theBeat.rhythm2; break;
@@ -536,28 +578,40 @@ function handleButtonMouseDown(event) {
     if (note) {
         switch(instrumentIndex) {
         case 0:  // Kick
-            playSound(currentKit.kickBuffer);
+            if(currentKit.kickMuted === false){
+                playSound(currentKit.kickBuffer);
+            }
             break;
 
         case 1:  // Snare
-            playSound(currentKit.snareBuffer);
+            if(currentKit.snareMuted === false){
+                playSound(currentKit.snareBuffer);
+            }
             break;
 
         case 2:  // Hihat
             // Pan the hihat according to sequence position.
-            playSound(currentKit.hihatBuffer);
+            if(currentKit.hihatMuted === false){
+                playSound(currentKit.hihatBuffer);
+            }
             break;
 
         case 3:  // Tom 1 
-            playSound(currentKit.tom1Buffer);
+            if(currentKit.tom1Muted === false){
+                playSound(currentKit.tom1Buffer);
+            }
             break;
 
         case 4:  // Tom 2   
-            playSound(currentKit.tom2Buffer);
+            if(currentKit.tom2Muted === false){
+                playSound(currentKit.tom2Buffer);
+            }
             break;
 
         case 5:  // Tom 3   
-            playSound(currentKit.tom3Buffer);
+            if(currentKit.tom3Muted === false){
+                playSound(currentKit.tom3Buffer);
+            }
             break;
         }
     }
@@ -565,10 +619,13 @@ function handleButtonMouseDown(event) {
 
 function drawNote(drawValue, xindex, yindex) {    
     var elButton = document.getElementById(instruments[yindex] + '_' + xindex);
-    var buttonMuted = elButton.classList.contains('muted');
+    var mute = document.getElementById(instruments[yindex] + '_mute');
+    var buttonMuted = mute.classList.contains('active');
+    var classMuted = elButton.classList.contains('muted');
+
     switch (drawValue) {
-        case 0: elButton.classList.remove('alert'); buttonMuted ? elButton.classList.remove('muted') : null; break;
-        case 1: elButton.classList.add('alert'); buttonMuted ? elButton.classList.remove('muted') : null; break;
+        case 0: classMuted ? elButton.classList.remove('muted') : elButton.classList.remove('alert'); break;
+        case 1: buttonMuted ? elButton.classList.add('muted') : elButton.classList.add('alert'); break;
         case 2: elButton.classList.remove('alert'); elButton.classList.add('muted'); break;
     }
 }
