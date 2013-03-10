@@ -124,6 +124,9 @@ p:hover{
 #mobile-support{
     display: none;
 }
+#youtube-vid{
+    /*display: none;*/
+}
 @media only screen and (max-width: 767px){
     .button{
         margin-bottom: 10px;
