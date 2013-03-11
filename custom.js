@@ -387,8 +387,7 @@ function schedule() {
     timeoutId = setTimeout(schedule, 0);
 }
 
-function handlePlay(e){
-    e.preventDefault();
+function handlePlay(){
     currentKit.isPlaying = true;
     noteTime = 0;
 	startTime = context.currentTime + 0.005;
