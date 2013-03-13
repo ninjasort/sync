@@ -104,6 +104,11 @@ a:focus {
 .clear{
     clear: both;
 }
+code{
+    color: #000;
+    font-size: 20px; 
+    font-family: 'Monaco';
+}
 /*
     Because the main point behind the impress.js demo is to demo impress.js
     we display a fallback message for users with browsers that don't support
