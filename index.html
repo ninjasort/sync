@@ -13,78 +13,259 @@
 	<title>WebKit - 808</title>
 
 	<!-- Included CSS Files -->
-	<link rel="stylesheet" href="stylesheets/app.css">
+	<link rel="stylesheet" href="css/app.css">
 	<link rel="shortcut icon" href="favicon.ico" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-	<script src="jQuery-Kontrol/js/jquery.kontrol.js"></script>
-	<script src="http://connect.soundcloud.com/sdk.js"></script>
-	<script type="text/javascript" src="Recorderjs/recorder.js"></script>
-	<script src="custom.js"></script>
-	<link rel="stylesheet" href="style.css">
-	<script src="javascripts/foundation/modernizr.foundation.js"></script>
+	<link rel="stylesheet" href="prettyPhoto/css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
+	<!-- <script src="http://connect.soundcloud.com/sdk.js"></script> -->
+	<link rel="stylesheet" href="css/style.css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+	<script src="prettyPhoto/js/jquery.prettyPhoto.js" charset="utf-8"></script>
+	<script src="js/vendor/jquery.kontrol.js"></script>
 </head>
 <body>
+	<div id="myModal" class="reveal-modal [expand, xlarge, large, medium, small]">
+	  <h2>Keyboard Shortcuts</h2>
+	  <p><strong>space</strong> : play/stop</p>
+	  <p><strong>c</strong> : clear</p>
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
 	<div class="row">
 		<div class="twelve columns">
 			<h2>WebKit - 808</h2>
-			<p>Coming Soon...</p>
+			<p style="position: relative;"><span style="font-size: 10px;" class="success label"><strong>Beta</strong></span> | Developed by Cameron J Roe | <span id="social-icons"><a href="//github.com/cameronjroe"><img width="25px" src="images/github_icon.png"></a> <a href="//twitter.com/cameronjroe"><img width="25px" src="images/twitter_icon.png"></a></span></p>
 			<hr />
+			<span id="mobile-support"><h4>Mobile Support Coming Soon...</h4></span>
 		</div>
 	</div>
 
 	<div class="row">
+
+		<div id="get-started" class="four columns" style="text-align: justify;">
+			<h4>Getting Started</h4>
+			<p>Welcome to WebKit - 808, a fully functional, HTML 5, web drum machine. It takes advantage of the wonderful <a href="https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html">Web Audio API</a> and uses <a href="http://anthonyterrien.com/kontrol/">jQuery Kontrol</a> for epic dials!</p>
+
+<!-- 			<p>Create your own sequenced beats by clicking on the blue boxes. When you're finished your funky sequence, don't forget to download it as WAV file and use it in your productions. <br/> Have fun!</p> -->
+			<form class="custom">
+
+			  <!-- Custom Selects -->
+			  <label for="customDropdown"><strong>Presets</strong></label>
+			  <div class="custom dropdown">
+			    <a href="#" class="current">Choose a preset...</a>
+			    <a href="#" class="selector"></a>
+				    <ul>
+			    		<li id="demo808">808 Demo</li>
+				    	<li id="funkyHouse">Funky House</li>
+				    	<li id="hiphop">Hip Hop</li>
+				    	<li id="dubstep">Dubstep</li>
+				    </ul>
+			  </div>
+			</form>
+			<a href="http://www.youtube.com/watch?v=ydqxRko5XDA" id="video" rel="prettyPhoto">Watch the Video!</a>
+		</div>
 
 		<div class="eight columns">
 
 			<!-- Grid Example -->
 			<div class="row">
-				
+				<div class="twelve columns">
+					<div id="panel" class="panel">
+						<div id="mutes">
+							<span id="tom3_mute" class="mute-button"><a href="#">M</a></span>
+							<span id="tom2_mute" class="mute-button"><a href="#">M</a></span>
+							<span id="tom1_mute" class="mute-button"><a href="#">M</a></span>
+							<span id="hihat_mute" class="mute-button"><a href="#">M</a></span>
+							<span id="snare_mute" class="mute-button"><a href="#">M</a></span>
+							<span id="kick_mute" class="mute-button"><a href="#">M</a></span>
+						</div>
+						<p>
+							<span id="tom3_0" class="label button small"></span>
+							<span id="tom3_1" class="label button small"></span>
+							<span id="tom3_2" class="label button small"></span>
+							<span id="tom3_3" class="label button small"></span>
+							<span id="tom3_4" class="label button small"></span>
+							<span id="tom3_5" class="label button small"></span>
+							<span id="tom3_6" class="label button small"></span>
+							<span id="tom3_7" class="label button small"></span>
+							<span id="tom3_8" class="label button small"></span>
+							<span id="tom3_9" class="label button small"></span>
+							<span id="tom3_10" class="label button small"></span>
+							<span id="tom3_11" class="label button small"></span>
+							<span id="tom3_12" class="label button small"></span>
+							<span id="tom3_13" class="label button small"></span>
+							<span id="tom3_14" class="label button small"></span>
+							<span id="tom3_15" class="label button small"></span>
+							<!-- Put the sequencer here -->
+						</p>
+						<p>
+							<span id="tom2_0" class="label button small"></span>
+							<span id="tom2_1" class="label button small"></span>
+							<span id="tom2_2" class="label button small"></span>
+							<span id="tom2_3" class="label button small"></span>
+							<span id="tom2_4" class="label button small"></span>
+							<span id="tom2_5" class="label button small"></span>
+							<span id="tom2_6" class="label button small"></span>
+							<span id="tom2_7" class="label button small"></span>
+							<span id="tom2_8" class="label button small"></span>
+							<span id="tom2_9" class="label button small"></span>
+							<span id="tom2_10" class="label button small"></span>
+							<span id="tom2_11" class="label button small"></span>
+							<span id="tom2_12" class="label button small"></span>
+							<span id="tom2_13" class="label button small"></span>
+							<span id="tom2_14" class="label button small"></span>
+							<span id="tom2_15" class="label button small"></span>
+							<!-- Put the sequencer here -->
+						</p>
+						<p>
+							<span id="tom1_0" class="label button small"></span>
+							<span id="tom1_1" class="label button small"></span>
+							<span id="tom1_2" class="label button small"></span>
+							<span id="tom1_3" class="label button small"></span>
+							<span id="tom1_4" class="label button small"></span>
+							<span id="tom1_5" class="label button small"></span>
+							<span id="tom1_6" class="label button small"></span>
+							<span id="tom1_7" class="label button small"></span>
+							<span id="tom1_8" class="label button small"></span>
+							<span id="tom1_9" class="label button small"></span>
+							<span id="tom1_10" class="label button small"></span>
+							<span id="tom1_11" class="label button small"></span>
+							<span id="tom1_12" class="label button small"></span>
+							<span id="tom1_13" class="label button small"></span>
+							<span id="tom1_14" class="label button small"></span>
+							<span id="tom1_15" class="label button small"></span>
+							<!-- Put the sequencer here -->
+						</p>
+						<p>
+							<span id="hihat_0" class="label button small"></span>
+							<span id="hihat_1" class="label button small"></span>
+							<span id="hihat_2" class="label button small"></span>
+							<span id="hihat_3" class="label button small"></span>
+							<span id="hihat_4" class="label button small"></span>
+							<span id="hihat_5" class="label button small"></span>
+							<span id="hihat_6" class="label button small"></span>
+							<span id="hihat_7" class="label button small"></span>
+							<span id="hihat_8" class="label button small"></span>
+							<span id="hihat_9" class="label button small"></span>
+							<span id="hihat_10" class="label button small"></span>
+							<span id="hihat_11" class="label button small"></span>
+							<span id="hihat_12" class="label button small"></span>
+							<span id="hihat_13" class="label button small"></span>
+							<span id="hihat_14" class="label button small"></span>
+							<span id="hihat_15" class="label button small"></span>
+							<!-- Put the sequencer here -->
+						</p>
+						<p>
+							<span id="snare_0" class="label button small"></span>
+							<span id="snare_1" class="label button small"></span>
+							<span id="snare_2" class="label button small"></span>
+							<span id="snare_3" class="label button small"></span>
+							<span id="snare_4" class="label button small"></span>
+							<span id="snare_5" class="label button small"></span>
+							<span id="snare_6" class="label button small"></span>
+							<span id="snare_7" class="label button small"></span>
+							<span id="snare_8" class="label button small"></span>
+							<span id="snare_9" class="label button small"></span>
+							<span id="snare_10" class="label button small"></span>
+							<span id="snare_11" class="label button small"></span>
+							<span id="snare_12" class="label button small"></span>
+							<span id="snare_13" class="label button small"></span>
+							<span id="snare_14" class="label button small"></span>
+							<span id="snare_15" class="label button small"></span>
+							<!-- Put the sequencer here -->
+						</p>
+						<p id="bottomRow">
+							<span id="kick_0" class="label button small"></span>
+							<span id="kick_1" class="label button small"></span>
+							<span id="kick_2" class="label button small"></span>
+							<span id="kick_3" class="label button small"></span>
+							<span id="kick_4" class="label button small"></span>
+							<span id="kick_5" class="label button small"></span>
+							<span id="kick_6" class="label button small"></span>
+							<span id="kick_7" class="label button small"></span>
+							<span id="kick_8" class="label button small"></span>
+							<span id="kick_9" class="label button small"></span>
+							<span id="kick_10" class="label button small"></span>
+							<span id="kick_11" class="label button small"></span>
+							<span id="kick_12" class="label button small"></span>
+							<span id="kick_13" class="label button small"></span>
+							<span id="kick_14" class="label button small"></span>
+							<span id="kick_15" class="label button small"></span>
+							<div id="clears">
+								<span id="tom3_clear" class="clear-button"><a href="#">&#120;</a></span>
+								<span id="tom2_clear" class="clear-button"><a href="#">&#120;</a></span>
+								<span id="tom1_clear" class="clear-button"><a href="#">&#120;</a></span>
+								<span id="hihat_clear" class="clear-button"><a href="#">&#120;</a></span>
+								<span id="snare_clear" class="clear-button"><a href="#">&#120;</a></span>
+								<span id="kick_clear" class="clear-button"><a href="#">&#120;</a></span>
+							</div>
+							<p>
+								<span class="beatNum">1</span>
+								<span class="beatNum">5</span>
+								<span class="beatNum">9</span>
+								<span class="beatNum">13</span>
+							</p>
+							<!-- Put the sequencer here -->
+						</p>
+						<div id="transport-meter" class="nice progress"><span style="width:0%" class="meter"></span></div>
+						<input class="pitch dial" data-width="100" data-height="100" value="0">
+						<span>Pitch</span>
+						<input class="tempo dial" data-width="100" data-height="100">
+						<span>Tempo</span>
+						<input class="swing dial" data-width="100" data-height="100">
+						<span>Swing</span>
+					</div>
+				</div>
 			</div>
 
+      <div class="row">
+        <div class="twelve columns">
+          <p id="controls">
+          	<a href="#" id="play" class="success button">Play</a> 
+          	<a href="#" id="clear" class="button">Clear</a>
+          	<a style="float: right" href="#" class="small button" data-reveal-id="myModal">Keyboard Shortcuts</a>
+          	<!-- <a href="#" id="export" class="secondary button">Export</a> -->
+          </p>
+        </div>
+      </div>
 		</div>
 	</div>
 
-	<!-- Included JS Files (Uncompressed) -->
-	<script src="javascripts/foundation/jquery.js"></script>
+	<footer style="text-align:center; margin: 100px 0px 20px 0px; font-size: 13px;"><span style="font-size: 10px;" class="alert label">Currently only supported in WebKit browsers</span> | &copy; 2013 | Built with <a href="http://foundation.zurb.com/">Foundation</a></footer>
 	
-	<script src="javascripts/foundation/jquery.cookie.js"></script>
-	
-	<script src="javascripts/foundation/jquery.event.move.js"></script>
-	
-	<script src="javascripts/foundation/jquery.event.swipe.js"></script>
-	
-	<script src="javascripts/foundation/jquery.foundation.accordion.js"></script>
-	
-	<script src="javascripts/foundation/jquery.foundation.alerts.js"></script>
-	
-	<script src="javascripts/foundation/jquery.foundation.buttons.js"></script>
-	
-	<script src="javascripts/foundation/jquery.foundation.clearing.js"></script>
-	
-	<script src="javascripts/foundation/jquery.foundation.forms.js"></script>
-	
-	<script src="javascripts/foundation/jquery.foundation.joyride.js"></script>
-	
-	<script src="javascripts/foundation/jquery.foundation.magellan.js"></script>
-	
-	<script src="javascripts/foundation/jquery.foundation.mediaQueryToggle.js"></script>
-	
-	<script src="javascripts/foundation/jquery.foundation.navigation.js"></script>
-	
-	<script src="javascripts/foundation/jquery.foundation.orbit.js"></script>
-	
-	<script src="javascripts/foundation/jquery.foundation.reveal.js"></script>
-	
-	<script src="javascripts/foundation/jquery.foundation.tabs.js"></script>
-	
-	<script src="javascripts/foundation/jquery.foundation.tooltips.js"></script>
-	
-	<script src="javascripts/foundation/jquery.foundation.topbar.js"></script>
-	
-	<script src="javascripts/foundation/jquery.placeholder.js"></script>
-	
+	<script src="recorder.js"></script>
+	<script src="js/custom.js"></script>
+	<script>
+	// 	$('p').selectable({
+	//       stop: function() {
+	//         $('.ui-selected').each(function(){
+	//         	// handleButtonMouseDown(this);
+	//         	console.log(this);
+	//         });
+	//       }
+	//     });
+	// </script>
+	<script src="js/foundation/modernizr.foundation.js"></script>
 
-  <!-- Application Javascript, safe to override -->
-  <script src="javascripts/foundation/app.js"></script>
+	<!-- Included JS Files (Uncompressed) -->
+	<script src="js/foundation/jquery.js"></script>
+	<script src="js/foundation/jquery.cookie.js"></script>
+	<script src="js/foundation/jquery.event.move.js"></script>
+	<script src="js/foundation/jquery.event.swipe.js"></script>
+	<script src="js/foundation/jquery.foundation.accordion.js"></script>
+	<script src="js/foundation/jquery.foundation.alerts.js"></script>
+	<script src="js/foundation/jquery.foundation.buttons.js"></script>
+	<script src="js/foundation/jquery.foundation.clearing.js"></script>
+	<script src="js/foundation/jquery.foundation.forms.js"></script>
+	<script src="js/foundation/jquery.foundation.joyride.js"></script>
+	<script src="js/foundation/jquery.foundation.magellan.js"></script>
+	<script src="js/foundation/jquery.foundation.mediaQueryToggle.js"></script>
+	<script src="js/foundation/jquery.foundation.navigation.js"></script>
+	<script src="js/foundation/jquery.foundation.orbit.js"></script>
+	<script src="js/foundation/jquery.foundation.reveal.js"></script>
+	<script src="js/foundation/jquery.foundation.tabs.js"></script>
+	<script src="js/foundation/jquery.foundation.tooltips.js"></script>
+	<script src="js/foundation/jquery.foundation.topbar.js"></script>
+	<script src="js/foundation/jquery.placeholder.js"></script>
+	<script src="js/foundation/app.js"></script>
 </body>
 </html>
