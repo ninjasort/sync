@@ -85,6 +85,7 @@ function Kit(){
 
     this.pitch = 1;
     this.filterVal = 40;
+    this.filterOn = false;
 
 }
 // setup samples and load them
@@ -215,6 +216,15 @@ function initControls(){
     $('#clear').click(function(){ 
         handleReset();
     });
+
+    $('#full-screen').click(function(){
+        $('#get-started').toggle();
+        $('#drum-machine').toggleClass('eight').toggleClass('twelve').toggleClass('full-screen-mode');
+        $('#panel span').toggleClass('small').toggleClass('large');
+        $('.filter').prev().toggle();
+        // $('.filter').toggle();
+        $('#filterButton').toggle();
+    });
     // demos in dropdown
     for ( var demo in jsonData ){
         $("#" + demo).bind('click', function(e){
@@ -222,7 +232,17 @@ function initControls(){
         });
     }
     // hide the filter button
-    $('#filterOn').hide();
+    $('.filter').prev().hide();
+    $('.filter').hide();
+    $('#filterButton').hide();
+    $('#filterButton').click(function(){
+        $('#filterButton').toggleClass("secondary").toggleClass("success");
+        if(currentKit.filterOn){
+            currentKit.filterOn = false;
+        }else{
+            currentKit.filterOn = true;
+        }
+    });
 }
 
 function initButtons() {        
@@ -582,8 +602,17 @@ function playSound(buffer, noteTime){
     var gain = context.createGainNode();
     gain.gain.value = 1;
 
+    var filter = context.createBiquadFilter();
+    filter.type.value = "lowpass";
+    filter.frequency.value = currentKit.filterVal;
+
+    if(currentKit.filterOn === true){
+        voice.connect(filter);
+        filter.connect(gain);
+    }else{
+        voice.connect(gain);
+    }
     // connect
-    voice.connect(gain);
     gain.connect(context.destination);
     
     // play voice
@@ -715,6 +744,20 @@ $(".swing").dial({
         change : function (value) {
             // dial = value;
             currentKit.theBeat.swingFactor = (value / 10) % 20;
+        }
+    }).css({
+        display:'inline',
+        padding:'0px 10px'
+});
+$(".filter").dial({
+        fgColor:"#222222",
+        bgColor:"#EEEEEE",
+        min: 20,
+        max: 10000,
+        thickness : 0.5, 
+        change : function (value) {
+            // dial = value;
+            currentKit.filterVal = value;
         }
     }).css({
         display:'inline',

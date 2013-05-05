@@ -135,6 +135,26 @@ p:hover{
 }
 .ui-selecting { background: #FECA40; }
 .ui-selected { background: #c60f13; }
+
+.button.large{
+    font-size: 17px;
+    padding: 15px 24px 10px;
+}
+.full-screen-mode #panel p{
+    margin: 10px 0px 32px 0px;
+}
+.full-screen-mode .mute-button{
+    margin-bottom: 41px;
+}
+.full-screen-mode .clear-button{
+    margin-bottom: 41px;
+    font-size: 13px;
+    margin-right: 10px;
+}
+.full-screen-mode .beatNum{
+    padding-right: 216px;
+}
+
 @media only screen and (max-width: 767px){
     .button{
         margin-bottom: 10px;
