@@ -2,6 +2,7 @@
 // WebKit - 808
 // Cameron J Roe
 // Version: 1.0
+// Credits to Chris Wilson for Inspiration and Code snippets
 // =====================================================================
 $(function(){
 
