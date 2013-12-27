@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta property="og:title" content="WebKit-808 - An HTML5 drum machine"/>
+  <meta property="og:image:secure_url" content="https://raw.github.com/cameronjroe/webkit-808/gh-pages/images/screenshot.png"/>
+  <meta property="og:url" content="http://webkit808.com"/>
+  <meta property="og:site_name" content="Webkit-808"/>
+  <meta property="og:description" content="WebKit 808 is an HTML5 drum machine. It features a 4 bar step sequencer with 4 different kit presets in the genres of 808, Funky house, Hip Hop, and Dubstep. You can click on the steps to create rhythms, mute, clear, and change parameters like pitch, tempo, and swing. An additional fullscreen mode can be toggled to give the user a bigger display. Fullscreen mode also features a filter knob that controls a lowpass filter on the current kit. There are additional keyboard shortcuts to to play and clear the sequence. WebKit 808 was built in Javascript and jQuery with HTML5 web audio, jQuery Kontrol, and the Foundation framework. It’s free, fun, and easy to use."/>
+	<title>BLOCKS</title>
+
+	
+	<link rel="stylesheet" href="css/app.css">
+	<link rel="shortcut icon" href="favicon.ico" />
+	<!-- <link rel="stylesheet" href="prettyPhoto/css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" /> -->
+	<!-- <script src="http://connect.soundcloud.com/sdk.js"></script> -->
+	<link rel="stylesheet" href="css/style.css">
+  <link href="/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <!--[if IE]>
+      <link href="/css/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <![endif]-->
+<!-- // <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+	// <script src="prettyPhoto/js/jquery.prettyPhoto.js" charset="utf-8"></script>
+	// <script src="js/jquery.kontrol.js"></script> -->
+</head>
+<body>
+	<div id="myModal" class="reveal-modal [expand, xlarge, large, medium, small]">
+	  <h2>Keyboard Shortcuts</h2>
+	  <p><strong>space</strong> : play/stop</p>
+	  <p><strong>c</strong> : clear</p>
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
+	<div class="row">
+		<div class="twelve columns">
+			<h1>BLOCKS</h1>
+		</div>
+
+		<div class="row">
+			<!-- <input type="dropbox-chooser" name="selected-file" id="db-chooser"/> -->
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="blocks">
+			<div class="step"></div>
+			<div class="step"></div>
+			<div class="step"></div>
+			<div class="step"></div>
+		</div>
+	</div>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<!-- // <script type="text/javascript" src="https://www.dropbox.com/static/api/1/dropins.js" id="dropboxjs" data-app-key="5g1k50lpzgfzy4p"></script> -->
+	<script src="js/foundation/modernizr.foundation.js"></script>
+	<script src="js/foundation/jquery.cookie.js"></script>
+	<script src="js/foundation/jquery.event.move.js"></script>
+	<script src="js/foundation/jquery.foundation.accordion.js"></script>
+	<script src="js/foundation/jquery.foundation.alerts.js"></script>
+	<script src="js/foundation/jquery.foundation.buttons.js"></script>
+	<script src="js/foundation/jquery.foundation.clearing.js"></script>
+	<script src="js/foundation/jquery.foundation.forms.js"></script>
+	<script src="js/foundation/jquery.foundation.joyride.js"></script>
+	<script src="js/foundation/jquery.foundation.magellan.js"></script>
+	<script src="js/foundation/jquery.foundation.mediaQueryToggle.js"></script>
+	<script src="js/foundation/jquery.foundation.navigation.js"></script>
+	<script src="js/foundation/jquery.foundation.orbit.js"></script>
+	<script src="js/foundation/jquery.foundation.reveal.js"></script>
+	<script src="js/foundation/jquery.foundation.tabs.js"></script>
+	<script src="js/foundation/jquery.foundation.tooltips.js"></script>
+	<script src="js/foundation/jquery.foundation.topbar.js"></script>
+	<script src="js/foundation/jquery.placeholder.js"></script>
+	<script src="js/blocks.js"></script>
+	<script>
+	new BLOCKS();
+	</script>
+	<!-- // <script src="js/foundation/app.js"></script> -->
+</body>
+</html>
