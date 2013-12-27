@@ -4,6 +4,7 @@ A 4 bar step drum machine built in Javascript and jQuery with web audio, jQuery 
 
 
 Features:
+
 	- 4 different kit presets in the genres of 808, Funky house, Hip Hop, and Dubstep.
 	- Parameters pitch, tempo, and swing.
 	- Fullscreen mode with a lowpass filter
