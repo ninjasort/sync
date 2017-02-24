@@ -1,0 +1,27 @@
+{
+  "name": "webkit-808",
+  "version": "1.0.0",
+  "description": "A 4 bar step drum machine built in Javascript and jQuery with web audio, jQuery Kontrol, and the Foundation framework. It’s free, fun, and easy to use.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cameronroe/-sync-.git"
+  },
+  "keywords": [],
+  "author": "Cameron Roe <cameronjroe@gmail.com> (https://www.cameronroe.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cameronroe/-sync-/issues"
+  },
+  "homepage": "https://github.com/cameronroe/-sync-#readme",
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  }
+}
