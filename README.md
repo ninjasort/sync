@@ -1,7 +1,6 @@
-# Webkit - 808
+# sync
 
 A 4 bar step drum machine built in Javascript and jQuery with web audio, jQuery Kontrol, and the Foundation framework. It’s free, fun, and easy to use.
-
 
 Features:
 
@@ -12,4 +11,4 @@ Features:
 
 ![Alt text](/images/screenshot.png)
 
-Thanks [@cameronjroe](http://twitter.com/cameronjroe)
+- [@cameronjroe](http://twitter.com/cameronjroe)
