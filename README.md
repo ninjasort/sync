@@ -9,6 +9,6 @@ Features:
 	- Fullscreen mode with a lowpass filter
 	- Keyboard shortcuts to to play and clear the sequence.
 
-![Alt text](/images/screenshot.png)
+![Alt text](/src/exp-1/img/screenshot.png)
 
 - [@cameronjroe](http://twitter.com/cameronjroe)
