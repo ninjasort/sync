@@ -26,7 +26,6 @@ function init(){
 }
 
 function initControls(){
-
     // add eventListeners on the various HTML elements
     window.addEventListener("keydown", function(e){
         if(e.keyCode === 32){
@@ -290,30 +289,3 @@ $.getJSON('https://webkit-808.firebaseio.com/.json', function(data){
 // $("#buttonForModal").click(function() {
 //   $("#myModal").reveal();
 // });
-
-/**
- * Dropbox Support
- */
-(function(){
-
-var files = [];
-var dbChooser = document.getElementById("db-chooser");
-dbChooser.addEventListener("DbxChooserSuccess", function(e) {
-
-    e.files.forEach(function(file){
-        files.push(file);
-    });
-    createAudioEl();
-}, false);
-
-function createAudioEl(){
-    
-    var audioEl = document.createElement('audio');
-    audioEl.setAttribute('controls', '');
-    audioEl.setAttribute('src', files[0].link);
-    
-    document.getElementsByTagName('body')[0].appendChild(audioEl);
-
-}
-
-})();

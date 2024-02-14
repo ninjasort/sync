@@ -1,6 +1,3 @@
-
-"use strict";
-
 window.MACHINE = function(){
 
 	this.context = null;
