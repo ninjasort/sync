@@ -7,7 +7,6 @@
 $(
   (function () {
     'use strict'
-
     // =====================================================================
     // Drum Machine
     // =====================================================================
@@ -86,6 +85,7 @@ $(
       this.filterVal = 40
       this.filterOn = false
     }
+
     // setup samples and load them
     Kit.prototype.load = function (kitPreset) {
       if (this.startedLoading) {
@@ -186,20 +186,46 @@ $(
 
     function init() {
       // create a new context
-      context = new webkitAudioContext()
+      context = new AudioContext()
 
       // initialize our controls and buttons
       initControls()
       initButtons()
 
+      //attach a click listener to a play button
+      document
+        .querySelector('#tone-button')
+        ?.addEventListener('click', async () => {
+          console.log('started')
+          // create two monophonic synths
+          const synthA = new Tone.PluckSynth().toDestination()
+
+          //play another note every off quarter-note, by starting it "8n"
+          const loopB = new Tone.Sequence(
+            (time, note) => {
+              synthA.triggerAttackRelease(note, 0.3, time)
+            },
+            ['C4', ['E4', 'D4', 'E4'], 'G4', ['A4', 'G4']]
+          ).start(0)
+
+          // all loops start until the Transport is started
+          Tone.Transport.start()
+          Tone.start()
+        })
+
+      document
+        .querySelector('#tone-button-stop')
+        ?.addEventListener('click', async () => {
+          Tone.Transport.stop()
+        })
       // create a fresh instance of our kit
-      var kit = new Kit()
-      kit.load()
-      kit.isLoaded = true
-      // set the global currentKit to our instance (There should alway be one of these)
-      currentKit = kit
+      // var kit = new Kit()
+      // kit.load()
+      // kit.isLoaded = true
+      // // set the global currentKit to our instance (There should alway be one of these)
+      // currentKit = kit
       // load up a fresh copy of our beat values
-      currentKit.loadBeat(beatReset)
+      // currentKit.loadBeat(beatReset)
     }
 
     function initControls() {
@@ -300,7 +326,7 @@ $(
       request.send()
       return json
     }
-    
+
     // load the demo
     function loadDemoKit(demo, params) {
       // params = [tempo, pitch, swing];
@@ -720,7 +746,7 @@ $(
       voice.gain.value = 1
 
       // gain node
-      var gain = context.createGainNode()
+      var gain = context.createGain()
       gain.gain.value = 1
 
       var filter = context.createBiquadFilter()
@@ -737,7 +763,7 @@ $(
       gain.connect(context.destination)
 
       // play voice
-      voice.noteOn(noteTime)
+      voice.start(noteTime)
     }
 
     // creates a loop to play the sequence

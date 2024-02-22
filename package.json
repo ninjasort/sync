@@ -5,7 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tone": "^14.7.77"
   },
   "devDependencies": {
     "ava": "^6.1.1",
