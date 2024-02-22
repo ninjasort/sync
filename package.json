@@ -8,7 +8,16 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "ava": "^6.1.1"
+    "ava": "^6.1.1",
+    "grunt": "^1.6.1",
+    "grunt-contrib": "^0.11.0",
+    "grunt-contrib-compass": "^1.1.1",
+    "grunt-contrib-concat": "^2.1.0",
+    "grunt-contrib-connect": "^4.0.0",
+    "grunt-contrib-jshint": "^3.2.0",
+    "grunt-contrib-sass": "^2.0.0",
+    "grunt-contrib-uglify": "^5.2.2",
+    "grunt-contrib-watch": "^1.1.0"
   },
   "scripts": {
     "test": "ava"
